@@ -66,7 +66,16 @@ class mock_urllib2(object):
         """
         self.mock_datasets = mock_datasets
 
-    class URLError(Exception):
+    @staticmethod
+    def quote(s):
+        # urllib2.quote is urllib.quote
+        import urllib
+        return urllib.quote(s)
+
+    class URLError(IOError):
+        pass
+
+    class HTTPError(URLError):
         pass
 
     def urlopen(self, urlname):
