@@ -42,8 +42,7 @@ def test_download():
     _urllib2_ref = datasets.mldata.urllib2
     datasets.mldata.urllib2 = mock_urllib2({'mock':
                                             {'label': sp.ones((150,)),
-                                             'data': sp.ones((150, 4))}},
-                                           tmpdir)
+                                             'data': sp.ones((150, 4))}})
     try:
         mock = fetch_mldata('mock', data_home=tmpdir)
         assert_in(mock, in_=['COL_NAMES', 'DESCR', 'target', 'data'])
